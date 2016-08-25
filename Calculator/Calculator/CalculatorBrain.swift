@@ -27,8 +27,10 @@ class CalculatorBrain
         "e"  : Operation.Constant (M_E),        //M_E,
         "√"  : Operation.UnaryOperation (sqrt),  //sqrt,
         "cos": Operation.UnaryOperation (cos), //cos
-        "x"  : Operation.BinaryOperation (multiply),
-        
+        "×"  : Operation.BinaryOperation (multiply),
+        "+"  : Operation.BinaryOperation(divide),
+        "−"  : Operation.BinaryOperation(plus),
+        "÷"  : Operation.BinaryOperation(minus)
     ]
     
     //Operation
@@ -44,19 +46,23 @@ class CalculatorBrain
         if let operation = operation[symbol]{
         
             switch operation {
-            
             case .Constant (let value): accumulator = value
             case .UnaryOperation (let function): accumulator = function(accumulator)
-            case .BinaryOperation: break
-            case .Equals: break
-        
+            case .BinaryOperation (let function): pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
+            case .Equals:
+                if pending != nil {
+                    accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator)
+                    pending = nil
+                }
             }
         }
     }
     
+    private var pending: PendingBinaryOperationInfo?
+    
     struct PendingBinaryOperationInfo {
         var binaryFunction: ((Double, Double) -> Double)
-        var firtOperand: Double
+        var firstOperand: Double
     }
     
     var result: Double {
