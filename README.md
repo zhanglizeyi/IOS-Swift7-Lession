@@ -24,6 +24,9 @@ View = your controller is minions
 8. model (radio station) notification & KVO  
 
 
+CLASS:  pass by refrence -> means that thing live in the heap, pass around like pass a pointer, everyone share it
+
+STRUCT almost like class, like enum pass by value. Copy from origin, swift makes it smart IF YOU ARE NOT TOUCH Value, IT WON'T COPY THEM. 
 
 
 
