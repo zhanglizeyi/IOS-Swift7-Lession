@@ -13,38 +13,56 @@ import UIKit //like include module
 class ViewController: UIViewController {
     
     //propoerty
-    @IBOutlet weak var display: UILabel!
+    @IBOutlet private weak var display: UILabel!
     
     
-    var userIsInTheMiddleOfTyping = false
+    private var userIsInTheMiddleOfTyping = false
     
-    @IBAction func touchDigit(sender: UIButton)
+    @IBAction private func touchDigit(sender: UIButton)
     {
         //local and initial, never changed
         //whenever you doing constant
         let digit = sender.currentTitle!
         //exclamation is unwarp thing to get accosiated
         
-        if userIsInTheMiddleOfTyping
-        {
+        if userIsInTheMiddleOfTyping {
             let textCurrentlyInDisplay = display.text!
             display.text = textCurrentlyInDisplay + digit
         }
-        else
-        {
+        else {
             display.text = digit
         }
         userIsInTheMiddleOfTyping = true
     }
-    @IBAction func performOperation(sender: UIButton) {
-        userIsInTheMiddleOfTyping = false
-        if let mathematicalSymbol = sender.currentTitle
-        {
-            if mathematicalSymbol == "π"
-            {
-                display.text = String(M_PI)  
-            }
+    
+    private var displayValue: Double {
+        
+        get {
+            return Double(display.text!)!
         }
+        
+        set {
+            display.text = String(newValue)
+        }
+    }
+    
+    //can infer
+    private var brain = CalculatorBrain() //initializer
+    
+    
+    
+    @IBAction private func performOperation(sender: UIButton) {
+        if userIsInTheMiddleOfTyping {
+            
+            brain.setOperand(displayValue)
+            userIsInTheMiddleOfTyping = false
+        }
+        
+        if let mathematicalSymbol = sender.currentTitle {
+           
+            brain.performOperation(mathematicalSymbol)
+        }
+        displayValue = brain.result
     }
 
 }
