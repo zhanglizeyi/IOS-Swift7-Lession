@@ -23,8 +23,8 @@ func minus(op1: Double, op2: Double) -> Double{
     return op1-op2
 }
 
-func plus(op1: Double, op2: Double) -> Double{
-    return op1+op2
+func Float(op1: Double, op2: Double) -> Double{
+    return op1+(op2/10)
 }
 
 class CalculatorBrain
@@ -42,11 +42,12 @@ class CalculatorBrain
         "e"  : Operation.Constant (M_E),
         "√"  : Operation.UnaryOperation (sqrt),
         "cos": Operation.UnaryOperation (cos),
-        "±"   : Operation.UnaryOperation( {-$0}),
+        "±"  : Operation.UnaryOperation( {-$0}),
         "×"  : Operation.BinaryOperation ({ $0 * $1}),
         "+"  : Operation.BinaryOperation({ $0 + $1}),
         "-"  : Operation.BinaryOperation({$0 - $1}),
         "÷"  : Operation.BinaryOperation({$0 / $1}),
+        "."  : Operation.BinaryOperation(Float),
         "="  : Operation.Equals
     ]
     
@@ -73,7 +74,7 @@ class CalculatorBrain
                 pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
             case .Equals:
                 executePendingBinaryOperation()
-
+                
             }
         }
     }
