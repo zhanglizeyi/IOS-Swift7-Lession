@@ -35,8 +35,9 @@ class CalculatorBrain
         accumulator = operand
     }
     
+    
     //operation -> local, var all lower case and cammel case
-    var operation: Dictionary<String, Operation> = [
+    private var operation: Dictionary<String, Operation> = [
         "π"  : Operation.Constant (M_PI),
         "e"  : Operation.Constant (M_E),
         "√"  : Operation.UnaryOperation (sqrt),
@@ -50,13 +51,14 @@ class CalculatorBrain
     ]
     
     //Operation
-    enum Operation{
+    private enum Operation{
         case Constant (Double)
         case UnaryOperation ((Double) -> Double)
         case BinaryOperation ((Double, Double) -> Double)
         case Equals
     }
     
+    //calculation
     func performOperation(symbol: String) {
         
         if let operation = operation[symbol]{
@@ -76,6 +78,7 @@ class CalculatorBrain
         }
     }
     
+    //complexty
     private func executePendingBinaryOperation(){
         if pending != nil {
             accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator)
@@ -85,7 +88,7 @@ class CalculatorBrain
     
     private var pending: PendingBinaryOperationInfo?
     
-    struct PendingBinaryOperationInfo {
+    private struct PendingBinaryOperationInfo {
         var binaryFunction: ((Double, Double) -> Double)
         var firstOperand: Double
     }
