@@ -28,6 +28,12 @@ CLASS:  pass by refrence -> means that thing live in the heap, pass around like 
 
 STRUCT almost like class, like enum pass by value. Copy from origin, swift makes it smart IF YOU ARE NOT TOUCH Value, IT WON'T COPY THEM. 
 
+If enum define cases type, then the function can be using 
+keyword(op1: Double, op2: Double)->Double{return op1*op2}
+reduce: keyword(op1,op2) return op1*op2
+reduce: op1*op2 
+reduce: $0*$1    register vars
+
 
 
 
