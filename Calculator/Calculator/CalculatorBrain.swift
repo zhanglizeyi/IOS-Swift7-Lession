@@ -9,8 +9,22 @@
 
 import Foundation
 
+
+//global function
 func multiply(op1: Double, op2: Double) -> Double{
     return op1*op2
+}
+
+func divide(op1: Double, op2: Double) -> Double{
+    return op1/op2
+}
+
+func minus(op1: Double, op2: Double) -> Double{
+    return op1-op2
+}
+
+func plus(op1: Double, op2: Double) -> Double{
+    return op1+op2
 }
 
 class CalculatorBrain
@@ -28,9 +42,10 @@ class CalculatorBrain
         "√"  : Operation.UnaryOperation (sqrt),  //sqrt,
         "cos": Operation.UnaryOperation (cos), //cos
         "×"  : Operation.BinaryOperation (multiply),
-        "+"  : Operation.BinaryOperation(divide),
-        "−"  : Operation.BinaryOperation(plus),
-        "÷"  : Operation.BinaryOperation(minus)
+        "+"  : Operation.BinaryOperation(plus),
+        "-"  : Operation.BinaryOperation(minus),
+        "÷"  : Operation.BinaryOperation(divide),
+        "="  : Operation.Equals
     ]
     
     //Operation
