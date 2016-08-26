@@ -34,7 +34,11 @@ reduce: keyword(op1,op2) return op1*op2
 reduce: op1*op2 
 reduce: $0*$1    register vars
 
-
+VIEW: editor -> embed in -> stack view 
+ 1. row to row 
+ 2. column to column 
+ 3. all together
+ 4. stablized the top, leading, right, bottom gap
 
 
 
