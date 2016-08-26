@@ -11,21 +11,9 @@ import Foundation
 
 
 //global function
-func multiply(op1: Double, op2: Double) -> Double{
-    return op1*op2
-}
-
-func divide(op1: Double, op2: Double) -> Double{
-    return op1/op2
-}
-
-func minus(op1: Double, op2: Double) -> Double{
-    return op1-op2
-}
-
-func Float(op1: Double, op2: Double) -> Double{
-    return op1+(op2/10)
-}
+//func Float(op1: Double, op2: Double) -> Double{
+//    return op1+(op2/10)
+//}
 
 class CalculatorBrain
 {
@@ -47,7 +35,7 @@ class CalculatorBrain
         "+"  : Operation.BinaryOperation({ $0 + $1}),
         "-"  : Operation.BinaryOperation({$0 - $1}),
         "÷"  : Operation.BinaryOperation({$0 / $1}),
-        "."  : Operation.BinaryOperation(Float),
+        "."  : Operation.BinaryOperation({$0+$1/10}),
         "="  : Operation.Equals
     ]
     
