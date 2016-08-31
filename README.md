@@ -26,7 +26,7 @@ View = your controller is minions
 		      /    \
 		model  ||||  View(action) (should, will, did)
 
-<li>6. controller interpret/format Model information for the view </li>
+<li>6. controller interpret/format Model information for the view</li>
 <li>7. Model cannot talk to controller..contoller is UI logic and model is UI indepandent!</li>
 <li>8. model (radio station) notification & KVO</li>  
 
