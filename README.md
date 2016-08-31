@@ -1,4 +1,9 @@
-# IOS-Developer-Lession
+<html DOCTYPE>
+<html>
+<head>
+	<h1># IOS-Developer-Lession</h1>
+</head>
+<body>
 
 MVC - Model Controller View
 
@@ -70,25 +75,27 @@ There is also an optional "defaulting" ??
 
 	display.text = s ?? " "      -> if not equal s then  " "
 
-What is a tuple? can use it anywhere
+<h2> What is a tuple? can use it anywhere</h2>
 	let x:(String, Int, Double) = ("hello", 5, 0.85)
 	let (word, number, value) = x //tuple elements named when accessing the tuple
 	print(word) //prints hello
 	print(number) //print 5
 	print(value) //print 0.85
-OR
+<b>OR</b>
 	let x:(w: String, i: Int, v: Double) = ("hello", 5, 0.85)
 	print(x.w) //prints hello
 	print(x.i) //prints 5
 	print(x.v) //prints 0.85
 	let (wrd, num, val) = x //this is also legal(renames the tuple elemts on access)
 
-For tuple, you can either call it with . to call inside element
+<h2>For tuple, you can either call it with . to call inside element
 or
-let val = tuple then call by val.tuple's element
+let val = tuple then call by val.tuple's element</h2>
 ===========================================================
 Range is generic like an array
 	Range in swift just two end points, array would be Range<Int>
 
 
+</body>
+</html>
 
