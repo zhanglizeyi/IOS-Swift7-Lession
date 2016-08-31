@@ -40,13 +40,55 @@ VIEW: editor -> embed in -> stack view
  3. all together
  4. stablized the top, leading, right, bottom gap
 
+Lecture 3:
+	Optional
+    enum Optional<T> {// the <T> is a generic like as in Array<T>
+	case None
+	case Some<T>
+    }
 
+let x: String? = nil  <=>  let x = Optional<String>.None
+let x:String? = "hello" <=> let x = Optional<String>.Some<"hello">
 
+An Optional is just an enum
 
+Optional can be "chained" -> For example: 
+	if a hashValue is a var in string which is an int, and wnat to get the hashvalue from something which was an optional string? and what if that optional string was, contained in an optional UILabel display? 
 
+	var display: UILabel? //this is an @IBOutlet without the implicit unwrap!
+	if let label = display{
+		if let text = label.text{
+			let x = text.hashValue
+			...
+		}
+	}	
 
+or 
+if let x = display?.text?.hashValue{...}
 
+There is also an optional "defaulting" ??
 
+	display.text = s ?? " "      -> if not equal s then  " "
+
+What is a tuple? can use it anywhere
+	let x:(String, Int, Double) = ("hello", 5, 0.85)
+	let (word, number, value) = x //tuple elements named when accessing the tuple
+	print(word) //prints hello
+	print(number) //print 5
+	print(value) //print 0.85
+OR
+	let x:(w: String, i: Int, v: Double) = ("hello", 5, 0.85)
+	print(x.w) //prints hello
+	print(x.i) //prints 5
+	print(x.v) //prints 0.85
+	let (wrd, num, val) = x //this is also legal(renames the tuple elemts on access)
+
+For tuple, you can either call it with . to call inside element
+or
+let val = tuple then call by val.tuple's element
+===========================================================
+Range is generic like an array
+	Range in swift just two end points, array would be Range<Int>
 
 
 
