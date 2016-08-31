@@ -184,21 +184,17 @@ static func abs(d:Double) ->Double
 
 <h2>Lazy initialization</h2>
 A lazy property does not get initialized until someone accesses it
-allocate an object, execute a closure, or call a method if you want
-	lazy var brain = Calculatorbrain() // nice if calculatorBrain used lots of resources
-	lazy var someProperty: Type = {
-		//construct the value of somePerperty here
-		return <the constructed value>
-	}()
-	lazy var myProperty = self.initializeMyProperty()
-	This still satisies the "you must initialize all of your properties" rule
-	Unfortunatly, things initialized this way can not be constants(var ok, let not ok)
-	This can be used to get around some initialization dependency conunderums 
+allocate an object, execute a closure, or call a method if you want<br>
+	lazy var brain = Calculatorbrain() // nice if calculatorBrain used lots of resources<br>
+	lazy var someProperty: Type = {<br>
+		//construct the value of somePerperty here<br>
+		return <the constructed value><br>
+	}()<br>
+	lazy var myProperty = self.initializeMyProperty()<br>
+	This still satisies the "you must initialize all of your properties" rule<br>
+	Unfortunatly, things initialized this way can not be constants(var ok, let not ok)<br>
+	This can be used to get around some initialization dependency conunderums<br>
 
-	
-	
-
-	
 
 
 </body>
