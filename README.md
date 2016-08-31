@@ -98,6 +98,108 @@ let val = tuple then call by val.tuple's element</h2>
 Range is generic like an array
 	Range in swift just two end points, array would be Range<Int>
 
+example:
+	let array = ["a","b","c","d"]
+	let subArray = [2...3] //will be ["c","d"]
+	let subArray2 = [2..<3] // will be ["c"]
+	for i in 27...190 {} //range is enumeratable, like array, string, dictionary
+ 
+<h2>Data Structures in Swift</h2>
+<h3>Classes, Structures and Enumerations</h3>
+	<p> These 3 fundamental building blocks of data structures in swift
+<h3>similarities</h3> 
+	class CalculatorBrain{}
+	struct Vertex{}
+	enum Op{} //can not have store property, can have computed property
+
+<h3>properties and function</h3>
+	func doit(arg: Type) -> ReturnValue{}
+	var storedProperty = <intial value>(not enum)
+	var computedProperty: Type{
+		get{}
+		set{}
+	}
+<h3>Difference</h3>
+	Inheritance(class only)
+	value type(struct, enum) class(pointer)
+
+<h3>Value(struct and enum)</h3>
+	<u>copied</u> when passed as an argument to a function
+	<u>copied</u> when assigned to a different variable
+	<u>Immutable</u> if assigned to a variable with let 
+	Remember that function parameters are constants
+	You must note any func that mutate a struct/enum with the keyword mutating
+<br>
+<h3>Reference</h3>
+	Stored in the heap and reference counted(automatically)
+	Constant pointers to a class(let) still can mutate by calling methods and changing properties
+
+<h2>Method</h2>
+<h3>Parameters Names</h3>
+   All parameters to all functions have an <u>internal</u> name and an <u>external</u> name
+   The internal name is the name of the local val using inside of method
+   The external name is what callers use when they call the method
+   you can put _ if you don't want callers to use an external name at all for a given parameter
+   This is the default for the first parameter(except in initializers!)
+   For other(not the first) parameters, the inernal name is, by default, the external name
+   Any parameter's external name can be changed
+
+func foo(externalFirst first: Int, externalSecond second: Double){
+	var sum = 0.0
+	for _ in 0..<first { sum += second }
+}
+func bar() {
+	let result = foo(externalFirst: 123, externalSecond: 5.5)
+}
+
+<h3>Override methods/properties in your superclass</h3>
+	precede your func or var with the keyword override
+	A method can be marked final which will prevent subclasses from being able to override
+	class can be final		
+
+<h3>Both types and instances can hvae methods/properties
+	var d: Double = ...
+	if d.isSignMinus{
+		d = Double.abs(d)
+	}
+ isSignMinus is an instance property of a Double abs is a type method of Double
+ you declare a type method or property with a static prefix...
+static func abs(d:Double) ->Double
+
+<h3>Property Observers</h3>
+	var someStoredProperty: Int =42{
+		willSet {newValue is the new value}
+		didSet {oldValue is the old value}
+	}
+
+	override var inheritedproperty{
+		willSet {newValue is the new value}
+		didSet {oldValue is the old value}
+	}
+	
+	var operations: Dictionary<string, operation> = [...]{
+		willSet { will be executed if an operation is added/removed }
+		didSet { will be executed if an operation is added/removed }
+	}
+
+<h2>Lazy initialization</h2>
+A lazy property does not get initialized until someone accesses it
+allocate an object, execute a closure, or call a method if you want
+	lazy var brain = Calculatorbrain() // nice if calculatorBrain used lots of resources
+	lazy var someProperty: Type = {
+		//construct the value of somePerperty here
+		return <the constructed value>
+	}()
+	lazy var myProperty = self.initializeMyProperty()
+	This still satisies the "you must initialize all of your properties" rule
+	Unfortunatly, things initialized this way can not be constants(var ok, let not ok)
+	This can be used to get around some initialization dependency conunderums 
+
+	
+	
+
+	
+
 
 </body>
 </html>
