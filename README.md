@@ -195,6 +195,28 @@ allocate an object, execute a closure, or call a method if you want<br>
 	Unfortunatly, things initialized this way can not be constants(var ok, let not ok)<br>
 	This can be used to get around some initialization dependency conunderums<br>
 
+<h2>Array</h2>
+	var a = Array<String>()
+	... is the same as ...
+	var a = [string]()
+
+	let animals = ["g", "c", "D", "B"]
+	animals.append("Ostrich") //won't be compil, animals is immutable (bc let)
+	let animal = animals[5] //crash (array index out of bounds)
+
+	//enumeration an Array
+	for animal in animals{
+		println("\(animal)")
+	}
+<br>
+<h3>interesting Array<T>methods</h3>
+	this one creates a new with any "undesirables" filtered out
+	The function passed as the argument returns false if an element is undesirable
+	filter(includeElement: (T) -> Bool) -> [T]
+	let bigNumbers = [2,47,118,5,9].filter({ $0 > $20 }) //bigNumbers = [47, 118]
+
+
+
 
 
 </body>
