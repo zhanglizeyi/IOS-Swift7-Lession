@@ -21,7 +21,7 @@ View = your controller is minions
 <li>5. view needs to synchronized with controller, the controller sets itself as the view delegate</li>
 
                     Controller(target)(outlet)(delegate)(datasource)
-			/\
+				/\
 		       /  \
 		      /    \
 		model  ||||  View(action) (should, will, did)
