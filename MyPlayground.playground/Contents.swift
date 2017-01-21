@@ -105,12 +105,16 @@ let subArray1 = array[2...3] //["c","d"]
 let subArray2 = array[2..<3] //["c"]
 for i in 27...104 {} //range is enumeratable, like array, string, dictionary
 
-//Data Structures in Swift (classes, structures and enumerations)
-//these are the 3 fundamental building blocks of data structures in swift
 
-//Similarities
-    //Declaration syntax...
+//Data Structures in Swift (classes, structures and enumerations)
+//Classes, structures and Enumerations
+//these are the 3 fundamental building blocks of data structures in swift
+//这里再讲这三种的相同之处，和不同之处
+
+//Similarities 相同
+    //Declaration syntax... 声明
     //Properties and Functions...
+    //Initializer(again, not enum)... initialized
 
 //    func doit(argument: Type) -> ReturnValue{
 //
@@ -122,6 +126,53 @@ for i in 27...104 {} //range is enumeratable, like array, string, dictionary
 //        get{}
 //        set{}
 //    }
+
+//
+//init(argument1: Type, arugment2: Type){
+//
+//}
+
+//            Difference
+//            Inheritance(class only) 只有class 可以inheritance
+//            value type(struct, enum) vs. Reference type(class)
+
+/* value(struct and enum)
+        copied when passed as an argument to a function
+        copied when assigned to a different variable 
+        Immutable if assigned to a variable with let
+        Function parameter are constants
+        must note any func that can mutate a struct/enum with the keyword mutating(mutating func...)
+*/
+/*
+    Reference(class)
+        stored in the head and reference counted (automatically)
+        Constant pointers to a class(let) still can mutate by calling methods and changing properties
+ */
+
+func student(name: String) -> String{
+    return name
+}
+
+print(student(name: "Hello"))
+print(student(name: "student"))
+
+//usually chose class over struct
+//struct is for small things like rectangle objects...
+
+//            Methods
+//Parameters names(all parameters to all functions have an "internal" name and an "external" name)
+//internal name is the name of the local variable you use inside the method
+//external name is what callers use when they call the method
+//This is the default for the first parameter(except in initializers)
+
+func foo(_ first: Int, externalSecond second: Double){
+//    var sum = 0.0
+//    for _ in 0...<first { sum += second }
+}
+
+for bar(){
+    let result = foo(123, externalSecond: 5.5)
+}
 
 
 
