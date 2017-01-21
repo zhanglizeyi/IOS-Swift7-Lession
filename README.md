@@ -51,8 +51,8 @@ reduce: $0*$1    register vars
 <h1>Lecture 3:</h1>
 	Optional
     enum Optional<T> {// the <T> is a generic like as in Array<T>
-	case None
-	case Some<T>
+		case None
+		case Some<T>
     }
 
 let x: String? = nil  <=>  let x = Optional<String>.None
