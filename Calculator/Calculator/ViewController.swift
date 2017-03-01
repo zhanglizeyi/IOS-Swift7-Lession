@@ -13,12 +13,12 @@ import UIKit //like include module
 class ViewController: UIViewController {
     
     //propoerty
-    @IBOutlet private weak var display: UILabel!
+    @IBOutlet fileprivate weak var display: UILabel!
     
     
-    private var userIsInTheMiddleOfTyping = false
+    fileprivate var userIsInTheMiddleOfTyping = false
     
-    @IBAction private func touchDigit(sender: UIButton)
+    @IBAction fileprivate func touchDigit(_ sender: UIButton)
     {
         //local and initial, never changed
         //whenever you doing constant
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         userIsInTheMiddleOfTyping = true
     }
     
-    private var displayValue: Double {
+    fileprivate var displayValue: Double {
         
         get {
             return Double(display.text!)!
@@ -47,11 +47,11 @@ class ViewController: UIViewController {
     }
     
     //can infer
-    private var brain = CalculatorBrain() //initializer
+    fileprivate var brain = CalculatorBrain() //initializer
     
     
     
-    @IBAction private func performOperation(sender: UIButton) {
+    @IBAction fileprivate func performOperation(_ sender: UIButton) {
         if userIsInTheMiddleOfTyping {
             
             brain.setOperand(displayValue)
