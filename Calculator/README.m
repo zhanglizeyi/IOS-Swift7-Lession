@@ -1,2 +1,2 @@
 
-<img src="https://github.com/zhanglizeyi/IOS-Swift7-Lession/blob/master/Calculator/CalculatorProject.gif" alt>
+<img src='https://github.com/zhanglizeyi/IOS-Swift7-Lession/blob/master/Calculator/CalculatorProject.gif'>
