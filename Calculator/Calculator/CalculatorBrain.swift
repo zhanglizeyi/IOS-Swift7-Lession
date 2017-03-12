@@ -29,7 +29,7 @@ class CalculatorBrain
         "π"  : Operation.constant (M_PI),
         "e"  : Operation.constant (M_E),
         "√"  : Operation.unaryOperation (sqrt),
-        "cos": Operation.unaryOperation (cos),
+        "C"  : Operation.constant(0),
         "±"  : Operation.unaryOperation( {-$0}),
         "×"  : Operation.binaryOperation ({ $0 * $1}),
         "+"  : Operation.binaryOperation({ $0 + $1}),
