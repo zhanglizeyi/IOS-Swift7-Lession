@@ -1,1 +1,2 @@
-/Users/zhanglizeyi/Desktop/IOS_learning_StandF/Calculator/CalculatorProject.gif
+
+https://github.com/zhanglizeyi/IOS-Swift7-Lession/blob/master/Calculator/CalculatorProject.gif
