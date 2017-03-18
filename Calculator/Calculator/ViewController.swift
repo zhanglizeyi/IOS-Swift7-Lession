@@ -10,7 +10,7 @@
 
 import UIKit //like include module
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     
     //propoerty
     @IBOutlet fileprivate weak var display: UILabel!
@@ -21,12 +21,43 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var min: UITextField!
     @IBOutlet weak var max: UITextField!
     @IBOutlet weak var Slider: UISlider!
+    @IBOutlet weak var navigation: UINavigationItem!
     
     fileprivate var userIsInTheMiddleOfTyping = false
     
     override func viewDidLoad(){
         super.viewDidLoad();
         display.textColor = .orange;
+        
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        // Sets shadow (line below the bar) to a blank image
+        UINavigationBar.appearance().shadowImage = UIImage()
+        // Sets the translucent background color
+        UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        UINavigationBar.appearance().isTranslucent = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Setting", style: .plain, target: self, action: #selector(handleSetting))
+//        
+        
+        //right navgation items in two, 1 is pic of timeLine and 2 is userlist
+        let rightBtn1 = UIButton.init(type: .custom)
+        rightBtn1.frame = CGRect(x:0, y:0, width: 45, height:45)
+        rightBtn1.setImage(UIImage(named: "timeLineImage.png"), for: .normal)
+        rightBtn1.tintColor = .blue
+        rightBtn1.addTarget(self, action: #selector(handleSetting), for: .touchUpInside)
+        let item1 = UIBarButtonItem.init(customView: rightBtn1)
+        navigation.setLeftBarButton(item1, animated: true)
+        
+    }
+    
+    
+    func handleSetting(){
+        let con = settingController()
+        let navCon = UINavigationController(rootViewController: con)
+        present(navCon, animated: true, completion: nil)
     }
     
     @IBAction func defaultButton(_ sender: Any) {
@@ -79,6 +110,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
         userIsInTheMiddleOfTyping = true
     }
     
+    @IBAction func clearBtn(_ sender: Any) {
+        displayValue = 0
+        min.text = ""
+        max.text = ""
+        min.placeholder = "Min"
+        max.placeholder = "Max"
+        Slider.minimumValue = 0
+        Slider.maximumValue = 100
+        Slider.value = 50
+        display.text = "$"
+    }
+    
     @IBAction fileprivate func touchDigit(_ sender: UIButton)
     {
         //local and initial, never changed
@@ -98,6 +141,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     fileprivate var displayValue: Double {
         
         get {
+
             return Double(display.text!)!
         }
         
@@ -126,6 +170,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         //show the update
         displayValue = brain.result
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 
 }

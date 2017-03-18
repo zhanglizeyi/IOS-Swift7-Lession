@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E41765011E7C7FB3001BA13D /* settingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41765001E7C7FB3001BA13D /* settingController.swift */; };
 		E4B3D8051D6E1714003A5935 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B3D8041D6E1714003A5935 /* AppDelegate.swift */; };
 		E4B3D8071D6E1714003A5935 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B3D8061D6E1714003A5935 /* ViewController.swift */; };
 		E4B3D80A1D6E1714003A5935 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4B3D8081D6E1714003A5935 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E41765001E7C7FB3001BA13D /* settingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingController.swift; sourceTree = "<group>"; };
 		E4B3D8011D6E1714003A5935 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B3D8041D6E1714003A5935 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4B3D8061D6E1714003A5935 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				E4B3D8161D6E185E003A5935 /* Supporting Files */,
 				E4B3D8061D6E1714003A5935 /* ViewController.swift */,
+				E41765001E7C7FB3001BA13D /* settingController.swift */,
 				E4B3D8081D6E1714003A5935 /* Main.storyboard */,
 				E4B3D8171D6ED429003A5935 /* CalculatorBrain.swift */,
 			);
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B3D8181D6ED429003A5935 /* CalculatorBrain.swift in Sources */,
+				E41765011E7C7FB3001BA13D /* settingController.swift in Sources */,
 				E4B3D8071D6E1714003A5935 /* ViewController.swift in Sources */,
 				E4B3D8051D6E1714003A5935 /* AppDelegate.swift in Sources */,
 			);

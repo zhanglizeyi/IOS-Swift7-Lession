@@ -18,6 +18,7 @@ import Foundation
 class CalculatorBrain
 {
     fileprivate var accumulator = 0.0
+    fileprivate var string = ""
     
     func setOperand(_ operand: Double) {
         accumulator = operand
@@ -29,7 +30,7 @@ class CalculatorBrain
         "π"  : Operation.constant (M_PI),
         "e"  : Operation.constant (M_E),
         "√"  : Operation.unaryOperation (sqrt),
-        "C"  : Operation.constant(0),
+//        "C"  : Operation.original("$"),
         "±"  : Operation.unaryOperation( {-$0}),
         "×"  : Operation.binaryOperation ({ $0 * $1}),
         "+"  : Operation.binaryOperation({ $0 + $1}),
@@ -41,6 +42,7 @@ class CalculatorBrain
     
     //Operation
     fileprivate enum Operation{
+        case original (String)
         case constant (Double)
         case unaryOperation ((Double) -> Double)
         case binaryOperation ((Double, Double) -> Double)
@@ -61,8 +63,9 @@ class CalculatorBrain
                 executePendingBinaryOperation()
                 pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
             case .equals:
-                executePendingBinaryOperation()
-                
+                executePendingBinaryOperation()                
+            default:
+                print("default set ")
             }
         }
     }
