@@ -9,10 +9,10 @@
 import UIKit
 
 class settingController: UIViewController {
-
     
     let on = UILabel()
     let off = UILabel()
+    let switchButton = UISwitch(frame: CGRect(x:150, y:150 ,width:40, height:40))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,15 +32,14 @@ class settingController: UIViewController {
         mainL.isHighlighted  = true
  
        //switch
-        let switchButton = UISwitch(frame: CGRect(x:150, y:150 ,width:40, height:40))
         switchButton.isOn  = true
         switchButton.addTarget(self, action: #selector(switchChanged), for: .valueChanged)
        //onlabel
-        on.text = "On"
+        on.text = "high"
         on.frame = CGRect(x: 155, y: 160, width: 100, height: 100)
         on.tintColor = .orange
       //offlabel
-        off.text = "Off"
+        off.text = "low"
         off.frame = CGRect(x: 155, y: 160, width: 100, height: 100)
         off.tintColor = .orange
         
@@ -70,6 +69,18 @@ class settingController: UIViewController {
         off.widthAnchor.constraint(equalToConstant: 100)
         off.heightAnchor.constraint(equalToConstant: 100)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if(isSettingOn){
+            switchButton.isOn = true
+            on.isHidden = false
+            off.isHidden = true
+        }else{
+            switchButton.isOn = false
+            on.isHidden = true
+            off.isHidden = false
+        }
+    }
 
     func switchChanged(sender: UISwitch){
         print("this is switch button changed")
@@ -77,9 +88,11 @@ class settingController: UIViewController {
         if(sender.isOn == true){
             on.isHidden = false
             off.isHidden = true
+            isSettingOn = true
         }else{
             on.isHidden = true
             off.isHidden = false
+            isSettingOn = false
         }
     }
     

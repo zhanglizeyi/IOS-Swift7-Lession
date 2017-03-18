@@ -10,6 +10,12 @@
 
 import UIKit //like include module
 
+var isSettingOn = Bool()
+
+struct defaultsKeys {
+    static let keyOne = "lastAmount"
+}
+
 class ViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     
     //propoerty
@@ -22,25 +28,20 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
     @IBOutlet weak var max: UITextField!
     @IBOutlet weak var Slider: UISlider!
     @IBOutlet weak var navigation: UINavigationItem!
-    
+    @IBOutlet weak var fiveP: UIButton!
+    @IBOutlet weak var tenP: UIButton!
+    @IBOutlet weak var fifteenP: UIButton!
+    @IBOutlet weak var twentyP: UIButton!
+    @IBOutlet weak var twentyFiveP: UIButton!
+    @IBOutlet weak var finalTipAmount: UILabel!
+
     fileprivate var userIsInTheMiddleOfTyping = false
     
     override func viewDidLoad(){
         super.viewDidLoad();
         display.textColor = .orange;
         
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        // Sets shadow (line below the bar) to a blank image
-        UINavigationBar.appearance().shadowImage = UIImage()
-        // Sets the translucent background color
-        UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
-        // Set translucent. (Default value is already true, so this can be removed if desired.)
-        UINavigationBar.appearance().isTranslucent = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Setting", style: .plain, target: self, action: #selector(handleSetting))
-//        
+
         
         //right navgation items in two, 1 is pic of timeLine and 2 is userlist
         let rightBtn1 = UIButton.init(type: .custom)
@@ -51,8 +52,33 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
         let item1 = UIBarButtonItem.init(customView: rightBtn1)
         navigation.setLeftBarButton(item1, animated: true)
         
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        // Sets shadow (line below the bar) to a blank image
+        UINavigationBar.appearance().shadowImage = UIImage()
+        // Sets the translucent background color
+        UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        UINavigationBar.appearance().isTranslucent = true
+        
+        isSettingOn = true
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if(isSettingOn){
+            fiveP.setTitle("5%", for: .normal)
+            tenP.setTitle("10%", for: .normal)
+            fifteenP.setTitle("15%", for: .normal)
+            twentyP.setTitle("20%", for: .normal)
+            twentyFiveP.setTitle("25%", for: .normal)
+        }else{
+            fiveP.setTitle("30%", for: .normal)
+            tenP.setTitle("35%", for: .normal)
+            fifteenP.setTitle("40%", for: .normal)
+            twentyP.setTitle("45%", for: .normal)
+            twentyFiveP.setTitle("50%", for: .normal)
+        }
+    }
     
     func handleSetting(){
         let con = settingController()
@@ -71,32 +97,69 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
     }
     
     @IBAction func twentyFivePer(_ sender: Any) {
-        let result = displayValue * 0.25
+        var result = Double()
+        if(isSettingOn){
+            result = displayValue * 0.25
+        }else{
+            result = displayValue * 0.50
+        }
         displayValue = result
         display.text = String(result)
+        finalTipAmount.text = "$" + display.text!
+        UserDefaults.standard.set(finalTipAmount.text, forKey: "amount")
     }
     @IBAction func twentyPer(_ sender: Any) {
-        let result = displayValue * 0.2
+        var result = Double()
+        if(isSettingOn){
+            result = displayValue * 0.2
+        }else{
+            result = displayValue * 0.45
+        }
         displayValue = result
         display.text = String(result)
+        finalTipAmount.text = "$" + display.text!
+        UserDefaults.standard.set(finalTipAmount.text, forKey: "amount")
     }
     
     @IBAction func tenPer(_ sender: Any) {
-        let result = displayValue * 0.1
+        var result = Double()
+        if(isSettingOn){
+            result = displayValue * 0.1
+        }else{
+            result = displayValue * 0.35
+        }
         displayValue = result
         display.text = String(result)
+        finalTipAmount.text = "$" + display.text!
+        UserDefaults.standard.set(finalTipAmount.text, forKey: "amount")
     }
     
     @IBAction func fivePer(_ sender: Any) {
-        let result = displayValue * 0.05
+        var result = Double()
+        if(isSettingOn){
+             result = displayValue * 0.05
+        }else{
+            result = displayValue * 0.3
+        }
+        
+        
         displayValue = result
         display.text = String(result)
+        finalTipAmount.text = "$" + display.text!
+        UserDefaults.standard.set(finalTipAmount.text, forKey: "amount")
     }
     
     @IBAction func fifteenPer(_ sender: Any) {
-        let result = displayValue * 0.15
+        var result = Double()
+        if(isSettingOn){
+            result = displayValue * 0.15
+        }else{
+            result = displayValue * 0.40
+        }
         displayValue = result
         display.text = String(result)
+        finalTipAmount.text = "$" + display.text!
+        UserDefaults.standard.set(finalTipAmount.text, forKey: "amount")
     }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
@@ -110,7 +173,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
         userIsInTheMiddleOfTyping = true
     }
     
-    @IBAction func clearBtn(_ sender: Any) {
+    @IBAction func clearB(_ sender: UIButton) {
         displayValue = 0
         min.text = ""
         max.text = ""
@@ -119,9 +182,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
         Slider.minimumValue = 0
         Slider.maximumValue = 100
         Slider.value = 50
+        finalTipAmount.text = "$"
         display.text = "$"
     }
-    
+   
     @IBAction fileprivate func touchDigit(_ sender: UIButton)
     {
         //local and initial, never changed
@@ -139,7 +203,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
     }
     
     fileprivate var displayValue: Double {
-        
         get {
 
             return Double(display.text!)!
@@ -173,6 +236,21 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
     }
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        finalTipAmount.text = UserDefaults.standard.object(forKey: "amount") as! String?
+        print("view did appear \(finalTipAmount.text)")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("view will disappear")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("view did disappear")
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
