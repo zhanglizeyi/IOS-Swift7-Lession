@@ -34,14 +34,17 @@ class settingController: UIViewController {
        //switch
         switchButton.isOn  = true
         switchButton.addTarget(self, action: #selector(switchChanged), for: .valueChanged)
+        switchButton.translatesAutoresizingMaskIntoConstraints = false
        //onlabel
-        on.text = "high"
+        on.text = "low"
         on.frame = CGRect(x: 155, y: 160, width: 100, height: 100)
+        on.translatesAutoresizingMaskIntoConstraints = false
         on.tintColor = .orange
       //offlabel
-        off.text = "low"
+        off.text = "high"
         off.frame = CGRect(x: 155, y: 160, width: 100, height: 100)
         off.tintColor = .orange
+        off.translatesAutoresizingMaskIntoConstraints = false
         
         
         self.view.addSubview(mainL)
@@ -97,7 +100,12 @@ class settingController: UIViewController {
     }
     
     func handleBack(){
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
+        let when = DispatchTime.now() + 1
+        DispatchQueue.main.asyncAfter(deadline: when){
+            // your code with delay
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
